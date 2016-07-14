@@ -1,3 +1,4 @@
+# Parent Class (or superclass)
 class Vehicle
   def initialize
     @speed = 0
@@ -17,11 +18,13 @@ class Vehicle
   end
 end
 
+# Car is a child class (or subclass) of vehicle
 class Car < Vehicle
-
-  def initialize
-    super
-    @fuel = 50
+  def initialize(vehicle_hash)
+    super()
+    @fuel = vehicle_hash[:fuel]
+    @make = vehicle_hash[:make]
+    @model = vehicle_hash[:model]
   end
 
   def honk_horn
@@ -29,6 +32,7 @@ class Car < Vehicle
   end
 end
 
+# Bike is a child class (or subclass) of vehicle
 class Bike < Vehicle
   def ring_bell
     puts "Ring ring!"
@@ -37,12 +41,15 @@ end
 
 class MountainBike < Bike
   def vroom
-    puts "Vroooooooooom"
+    puts "Vroooooooooom!"
   end
 end
 
-car = Car.new
+car = Car.new(fuel: 50, make: "Ford", model: "Mustang")
+car.honk_horn
+
 bike = Bike.new
+bike.ring_bell
 
 mtbike = MountainBike.new
 mtbike.vroom
